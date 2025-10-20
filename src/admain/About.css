@@ -1,0 +1,122 @@
+/* Page layout */
+.admin-about-container {
+  min-height: 100vh;
+  background-color: #f5f6fa;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Card */
+.admin-card {
+  background-color: #fff;
+  width: 100%;
+  max-width: 600px;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Title */
+.admin-title {
+  font-size: 26px;
+  color: #222;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+/* Labels & Inputs */
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+/* Extra fields */
+.extra-field-box {
+  background: #f8f9fb;
+  border: 1px solid #e3e3e3;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.extra-field-box input {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+/* Buttons */
+.add-btn,
+.save-btn {
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.add-btn {
+  background-color: #4a90e2;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.add-btn:hover {
+  background-color: #3b7dc4;
+  transform: translateY(-1px);
+}
+
+.save-btn {
+  background-color: #28a745;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.save-btn:hover {
+  background-color: #218838;
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .admin-card {
+    padding: 20px;
+  }
+
+  .admin-title {
+    font-size: 22px;
+  }
+}

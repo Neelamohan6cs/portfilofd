@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./Profile.css"; // 👈 Import normal CSS
 
 export default function ProfileForm() {
   const navigate = useNavigate();
-
-  // ✅ backend URL from .env (fallback: localhost)
-  const API_BASE = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+  const API_BASE = process.env.REACT_APP_BACKEND_URL;
 
   const [formData, setFormData] = useState({
     name: "",
@@ -17,7 +16,6 @@ export default function ProfileForm() {
   const [imageFile, setImageFile] = useState(null);
   const [preview, setPreview] = useState("");
 
-  // Handle text/social inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (["twitter", "linkedin", "instagram"].includes(name)) {
@@ -30,7 +28,6 @@ export default function ProfileForm() {
     }
   };
 
-  // Handle image upload
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -39,7 +36,6 @@ export default function ProfileForm() {
     }
   };
 
-  // Submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -51,9 +47,9 @@ export default function ProfileForm() {
     const data = new FormData();
     data.append("name", formData.name);
     data.append("roles", JSON.stringify(rolesArray));
-    data.append("socialLinks", JSON.stringify(formData.socials)); // 👈 match backend key
-    data.append("cvLink", formData.cv); // 👈 match backend key
-    if (imageFile) data.append("profileImg", imageFile); // 👈 correct key
+    data.append("socialLinks", JSON.stringify(formData.socials));
+    data.append("cvLink", formData.cv);
+    if (imageFile) data.append("profileImg", imageFile);
 
     try {
       const res = await axios.post(`${API_BASE}/api/profiles`, data, {
@@ -69,87 +65,87 @@ export default function ProfileForm() {
   };
 
   return (
-    <div style={{ padding: "1rem", maxWidth: "500px", margin: "auto" }}>
-      <h2>Create Profile</h2>
-      <form
-        onSubmit={handleSubmit}
-        style={{ display: "flex", flexDirection: "column", gap: "0.8rem" }}
-      >
-        <input
-          type="text"
-          name="name"
-          placeholder="Full Name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
+    <div className="profile-container">
+      <div className="profile-card">
+        <h2>Create Profile</h2>
 
-        <input type="file" accept="image/*" onChange={handleImageUpload} />
-        {preview && (
-          <img
-            src={preview}
-            alt="Preview"
-            style={{
-              width: "120px",
-              height: "120px",
-              borderRadius: "50%",
-              objectFit: "cover",
-            }}
-          />
-        )}
+        <form onSubmit={handleSubmit} className="profile-form">
+          <div className="form-group">
+            <label>Full Name</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter your full name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <input
-          type="text"
-          name="roles"
-          placeholder="Roles (comma separated)"
-          value={formData.roles}
-          onChange={handleChange}
-        />
+          <div className="form-group image-upload">
+            <label>Profile Image</label>
+            <input type="file" accept="image/*" onChange={handleImageUpload} />
+            {preview && (
+              <img
+                src={preview}
+                alt="Preview"
+                className="preview-img"
+              />
+            )}
+          </div>
 
-        <input
-          type="text"
-          name="twitter"
-          placeholder="Twitter URL"
-          value={formData.socials.twitter}
-          onChange={handleChange}
-        />
+          <div className="form-group">
+            <label>Roles</label>
+            <input
+              type="text"
+              name="roles"
+              placeholder="e.g. Developer, Designer"
+              value={formData.roles}
+              onChange={handleChange}
+            />
+          </div>
 
-        <input
-          type="text"
-          name="linkedin"
-          placeholder="LinkedIn URL"
-          value={formData.socials.linkedin}
-          onChange={handleChange}
-        />
+          <div className="form-group">
+            <label>Social Links</label>
+            <input
+              type="text"
+              name="twitter"
+              placeholder="Twitter URL"
+              value={formData.socials.twitter}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="linkedin"
+              placeholder="LinkedIn URL"
+              value={formData.socials.linkedin}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="instagram"
+              placeholder="Instagram URL"
+              value={formData.socials.instagram}
+              onChange={handleChange}
+            />
+          </div>
 
-        <input
-          type="text"
-          name="instagram"
-          placeholder="Instagram URL"
-          value={formData.socials.instagram}
-          onChange={handleChange}
-        />
+          <div className="form-group">
+            <label>CV File Link</label>
+            <input
+              type="text"
+              name="cv"
+              placeholder="Paste CV link (Google Drive or URL)"
+              value={formData.cv}
+              onChange={handleChange}
+            />
+          </div>
 
-        <input
-          type="text"
-          name="cv"
-          placeholder="CV File Link"
-          value={formData.cv}
-          onChange={handleChange}
-        />
-
-        <button
-          type="submit"
-          style={{
-            padding: "0.5rem",
-            background: "#333",
-            color: "#fff",
-            cursor: "pointer",
-          }}
-        >
-          Save
-        </button>
-      </form>
+          <button type="submit" className="submit-btn">
+            Save Profile
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

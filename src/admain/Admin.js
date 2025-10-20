@@ -15,6 +15,13 @@ export default function Admin() {
           </div>
         </Link>
 
+        <Link to="/admin/about">
+          <div className="admin-card">
+            <h3>about</h3>
+            <p>Manage your portfolio about.</p>
+          </div>
+        </Link>
+
         <div className="admin-card">
           <h3>Projects</h3>
           <p>Manage your portfolio projects.</p>

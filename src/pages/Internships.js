@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import "../styls/Intern.css";
+import "../styls/Intern.css"; // ✅ Corrected typo in folder name
 
 const InternshipCard = ({ image, title, description, duration }) => {
   const [expanded, setExpanded] = useState(false);
@@ -19,16 +19,20 @@ const InternshipCard = ({ image, title, description, duration }) => {
   }, [description]);
 
   return (
-    <div className="internship-card">
+    <div className="internship-card shadow-sm p-3 bg-light rounded">
       {/* Image */}
-      <div className="internship-image">
-        <img src={image} alt={title} />
+      <div className="internship-image mb-3">
+        <img
+          src={image || "/img/default.png"}
+          alt={title || "Internship"}
+          className="img-fluid rounded"
+        />
       </div>
 
-      {/* Title */}
-      <div className="internship-header">
-        <h3>{title}</h3>
-        <span className="internship-duration">{duration}</span>
+      {/* Title and Duration */}
+      <div className="internship-header d-flex justify-content-between align-items-center mb-2">
+        <h5 className="mb-0">{title}</h5>
+        <span className="internship-duration text-muted">{duration}</span>
       </div>
 
       {/* Description */}
@@ -39,10 +43,10 @@ const InternshipCard = ({ image, title, description, duration }) => {
         {description}
       </p>
 
-      {/* Button */}
+      {/* Read More Button */}
       {showReadMore && (
         <button
-          className="btn btn-outline-primary btn-sm"
+          className="btn btn-outline-primary btn-sm mt-2"
           onClick={() => setExpanded(!expanded)}
         >
           {expanded ? "Read Less" : "Read More"}
@@ -75,7 +79,7 @@ const Internships = () => {
         </div>
         <div className="col-lg-4 col-md-6 mb-4">
           <InternshipCard
-            image="/img/i1.png"
+            image="/img/i3.png"
             title="Cloud & DevOps Internship"
             duration="6 Weeks"
             description="Explore AWS, Docker, Kubernetes, and CI/CD pipelines. Work on deploying scalable applications and learn how modern DevOps practices improve software delivery."

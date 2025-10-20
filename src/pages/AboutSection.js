@@ -1,49 +1,58 @@
 // src/AboutSection.js
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const AboutSection = () => {
+  const [about, setAbout] = useState({
+    name: "John Doe",
+    aboutText:
+      "I’m a passionate software developer who loves building web applications, exploring new technologies, and solving real-world problems through code.",
+    extraFields: [
+      { _id: "1", key: "Email", value: "john.doe@example.com" },
+      { _id: "2", key: "Location", value: "Chennai, India" },
+      { _id: "3", key: "Experience", value: "3+ years" },
+    ],
+  });
+
+  const API_BASE = process.env.REACT_APP_BACKEND_URL;
+
+  useEffect(() => {
+    axios
+      .get(`${API_BASE}/api/abouts`)
+      .then((res) => {
+        if (Array.isArray(res.data) && res.data.length > 0) {
+          setAbout(res.data[0]); // ✅ Use first object in array
+        } else {
+          console.warn("No about data found — using default data.");
+        }
+      })
+      .catch((err) => {
+        console.log("Error fetching about data, using default:", err);
+      });
+  }, [API_BASE]);
+
   return (
-    <div className="container bg-white py-5 ">
+    <div className="container bg-white py-5">
       <div className="row px-3">
         <div className="col-12">
           <h2 className="title position-relative pb-2 mb-4">About Me</h2>
         </div>
 
         <div className="col-12">
-          <p>
-            Sea et gubergren justo invidunt at amet clita. Justo sit justo tempor et
-            invidunt voluptua, lorem voluptua ipsum gubergren et est nonumy magna et
-            vero, sit eos dolor sea sed et dolor erat et. Accusam accusam magna
-            aliquyam eirmod amet est kasd dolore sanctus. Lorem ea vero lorem eos eos
-            sanctus labore. Aliquyam vero ipsum dolor duo clita consetetur stet,
-            aliquyam ipsum sea sed et magna amet dolor.
-          </p>
+          <p>{about.aboutText}</p>
 
           <div className="row">
             <div className="col-sm-6 py-1">
-              <h5 className="d-inline text-primary">Name:</h5> John Doe
+              <h5 className="d-inline text-primary">Name:</h5> {about.name}
             </div>
-            <div className="col-sm-6 py-1">
-              <h5 className="d-inline text-primary">Birthday:</h5> 1 April 1990
-            </div>
-            <div className="col-sm-6 py-1">
-              <h5 className="d-inline text-primary">Degree:</h5> Master
-            </div>
-            <div className="col-sm-6 py-1">
-              <h5 className="d-inline text-primary">Experience:</h5> 10 Years
-            </div>
-            <div className="col-sm-6 py-1">
-              <h5 className="d-inline text-primary">Phone:</h5> +012 345 6789
-            </div>
-            <div className="col-sm-6 py-1">
-              <h5 className="d-inline text-primary">Email:</h5> info@example.com
-            </div>
-            <div className="col-sm-6 py-1">
-              <h5 className="d-inline text-primary">Address:</h5> 123 Street, New York, USA
-            </div>
-            <div className="col-sm-6 py-1">
-              <h5 className="d-inline text-primary">Freelance:</h5> Available
-            </div>
+
+            {/* Render extraFields dynamically */}
+            {about.extraFields?.map((field) => (
+              <div className="col-sm-6 py-1" key={field._id}>
+                <h5 className="d-inline text-primary">{field.key}:</h5>{" "}
+                {field.value}
+              </div>
+            ))}
           </div>
         </div>
       </div>

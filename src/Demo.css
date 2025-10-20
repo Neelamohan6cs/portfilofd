@@ -1,0 +1,73 @@
+.container5 {
+  border: 8px solid blue;
+  padding: 20px;
+  margin: 20px;
+  text-align: left;
+  background-color: rgb(255, 234, 0);
+}
+
+.demo {
+  color: rgb(245, 245, 245);
+  background-color: greenyellow;
+  padding: 23px;
+  text-align: right;
+  border: 4px solid rgb(34, 0, 255);
+}
+
+.flag {
+  margin-left: 10px;
+  padding: 20px;
+  border: 2px solid black;
+  width: 200px;  
+  display: block;     /* Set width */
+  height: auto;
+  
+  
+} .flag h3{
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  font-family:italic;
+}
+
+.red {
+  background-color: red;
+  height: 40px;       /* height of stripe */
+}
+
+.ellow {
+  
+  background-color: yellow;
+  height: 40px;
+  
+  border: 0.1px solid blue;      
+}
+.ellow img {
+  display: block;          /* allows margin auto centering */
+  max-width: 100%;         /* prevents overflow horizontally */
+  max-height: 100%;        /* prevents overflow vertically */
+  margin: 0 auto;          /* centers image horizontally */
+  object-fit: contain;     /* keeps image ratio without cropping */
+}
+
+.dmk{
+  margin: 20px;
+  padding: 10px;
+  border: 2px solid black;
+  width: 200px;
+}
+.black {
+  background-color: black;
+  height: 60px;       /* height of stripe */
+}
+.red1{
+  background-color: red;
+  height: 60px;       /* height of stripe */
+}
+.dmk h3{
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  font-family: 'Times New Roman';
+}
+

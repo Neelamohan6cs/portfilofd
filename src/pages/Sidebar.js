@@ -1,10 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
 import Typed from "typed.js";
 import axios from "axios";
+import { FaGithubSquare } from "react-icons/fa";
+
 
 export default function Sidebar() {
+  const [about, setAbout] = useState(null);
   const API_BASE = process.env.REACT_APP_BACKEND_URL;
   console.log("API Base URL:", API_BASE);
+  
 
   const defaultProfile = {
     name: "Neela",
@@ -57,7 +61,11 @@ export default function Sidebar() {
         }
       })
       .catch((err) => {
-        console.error("❌ Axios error fetching profile:", err);
+        console.error("❌ Axios error fetching profile:", err.message);
+        if (err.response) {
+          console.error("Status:", err.response.status);
+          console.error("Data:", err.response.data);
+        }
       });
   }, []);
 
@@ -121,6 +129,7 @@ export default function Sidebar() {
               rel="noreferrer"
             >
               <i className="fab fa-facebook-f"></i>
+
             </a>
           )}
           {profile.socials?.linkedin && (
