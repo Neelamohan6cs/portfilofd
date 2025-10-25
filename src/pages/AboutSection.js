@@ -4,12 +4,12 @@ import React, { useEffect, useState } from "react";
 
 const AboutSection = () => {
   const [about, setAbout] = useState({
-    name: "John Doe",
+    name: "Neela",
     aboutText:
       "I’m a passionate software developer who loves building web applications, exploring new technologies, and solving real-world problems through code.",
     extraFields: [
-      { _id: "1", key: "Email", value: "john.doe@example.com" },
-      { _id: "2", key: "Location", value: "Chennai, India" },
+      { _id: "1", key: "Email", value: "Neelamohan" },
+      { _id: "2", key: "Location", value: "Perambalur, India" },
       { _id: "3", key: "Experience", value: "3+ years" },
     ],
   });

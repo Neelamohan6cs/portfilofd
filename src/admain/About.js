@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./About.css";
+import "./admincss/About.css";
 import axios from "axios";
 
 export default function AdminAbout() {

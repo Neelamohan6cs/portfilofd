@@ -1,11 +1,16 @@
 import React from "react";
-import "./admain.css";
+import "./admincss/admain.css";
 import { Link } from "react-router-dom";
 
 export default function Admin() {
+  function logout() {
+    localStorage.removeItem("token");
+    window.location.href = "/";
+  }
   return (
     <div className="admin-container">
       <h1 className="admin-header">Admin Dashboard</h1>
+      <button className="logout" onClick={logout}>logout</button>
 
       <div className="admin-card-grid">
         <Link to="/admin/profile">

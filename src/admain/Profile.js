@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./Profile.css"; // 👈 Import normal CSS
+import "./admincss/Profile.css"; // 👈 Import normal CSS
 
 export default function ProfileForm() {
   const navigate = useNavigate();

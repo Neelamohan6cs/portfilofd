@@ -1,60 +1,108 @@
 .education-section {
-
-  padding: 40px 20px;
-  max-width: 800px;
+  padding: 50px 20px;
+  max-width: 850px;
   margin: auto;
+  background: #ffffff;
+  font-family: "Poppins", sans-serif;
 }
 
 .section-title {
   font-size: 32px;
-  font-weight: bold;
-  margin-bottom: 30px;
-  text-align: center;
+  font-weight: 700;
+  margin-bottom: 40px;
+  text-align: left;
+  color: #222;
   position: relative;
+}
+
+.section-title::after {
+  content: "";
+  position: left;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  
+  height: 3px;
+  background-color: #007bff;
+  border-radius: 5px;
 }
 
 .timeline {
   position: relative;
-  padding-left: 20px;
-  border-left: 3px solid #007bff;
+  padding-left: 30px;
+  border-left: 3px solid #6200ff;
 }
 
 .education-card {
   position: relative;
-  margin-bottom: 30px;
-  padding-left: 20px;
-  cursor: pointer;
+  margin-bottom: 40px;
+  padding-left: 25px;
   transition: all 0.3s ease;
 }
 
 .timeline-dot {
   position: absolute;
-  left: -10px;
-  top: 10px;
-  width: 16px;
-  height: 16px;
-  background-color: #007bff;
+  left: -11px;
+  top: 12px;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, #007bff, #00a6ff);
   border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.education-card:hover .timeline-dot {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.9);
 }
 
 .education-content {
   background-color: #f9f9f9;
-  padding: 15px 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 18px 22px;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+}
+
+.education-card:hover .education-content {
+  background-color: #f0f7ff;
+  border-left: 4px solid #007bff;
+  transform: translateX(5px);
 }
 
 .education-title {
   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
+  color: #222;
+}
+
+.education-institution {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 8px;
 }
 
 .education-duration {
   font-size: 14px;
-  color: #666;
+  color: #007bff;
+  font-weight: 500;
   margin-bottom: 10px;
-  display: block;
+  display: inline-block;
+}
+
+.education-percentage {
+  display: inline-block;
+  background: #007bff;
+  color: #fff;
+  font-size: 13px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-weight: 500;
+  margin-left: 10px;
 }
 
 .education-description {
@@ -62,7 +110,13 @@
   color: #333;
   line-height: 1.6;
 }
-
-.education-card:hover .education-content {
-  background-color: #e9f5ff;
+.delete{
+  color: red;
+  cursor: pointer;
+  position: left;
+}
+.delete:hover{
+  transform: scale(1.2);
+  color: darkred;
+  
 }

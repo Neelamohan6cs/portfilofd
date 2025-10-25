@@ -1,14 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import Typed from "typed.js";
 import axios from "axios";
-import { FaGithubSquare } from "react-icons/fa";
-
 
 export default function Sidebar() {
-  const [about, setAbout] = useState(null);
   const API_BASE = process.env.REACT_APP_BACKEND_URL;
   console.log("API Base URL:", API_BASE);
-  
 
   const defaultProfile = {
     name: "Neela",
@@ -40,6 +36,7 @@ export default function Sidebar() {
       .get(`${API_BASE}/api/profiles`)
       .then((res) => {
         const data = res.data;
+        console.log("✅ Profile data fetched:", data);
         if (data && Object.keys(data).length > 0) {
           setProfile((prev) => ({
             ...prev,
@@ -67,7 +64,7 @@ export default function Sidebar() {
           console.error("Data:", err.response.data);
         }
       });
-  }, []);
+  }, [API_BASE]);
 
   // Typed.js setup
   useEffect(() => {
@@ -99,6 +96,10 @@ export default function Sidebar() {
           className="w-100 img-fluid mb-4"
           src={profile.image}
           alt={profile.name}
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = "/img/profile1.jpg"; // fallback image
+          }}
         />
         <h1 className="mt-2">{profile.name}</h1>
 
@@ -106,8 +107,10 @@ export default function Sidebar() {
           <h4
             className="typed-text-output d-inline-block text-body"
             ref={typedEl}
-            aria-label="Dynamic role typing"
-          ></h4>
+            aria-live="polite"
+          >
+            <span className="sr-only">Loading roles...</span>
+          </h4>
         </div>
 
         <div className="d-flex justify-content-center mt-auto mb-3">
@@ -129,7 +132,6 @@ export default function Sidebar() {
               rel="noreferrer"
             >
               <i className="fab fa-facebook-f"></i>
-
             </a>
           )}
           {profile.socials?.linkedin && (

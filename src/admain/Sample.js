@@ -38,12 +38,24 @@ const Education = () => {
       .catch((err) => {
         console.error("Error fetching education data:", err);
       });
-  }, []); // <- empty dependency ensures it runs only once
+  }, []); 
+
+  function handleDelete(id) {
+    axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/educations/${id}`)
+    .then((res) => {
+      console.log("Education data deleted:", res.data);
+    })
+    .catch((err) => {
+      console.error("Error deleting education data:", err);
+    });
+  }
+  // <- empty dependency ensures it runs only once
 
   return (
     <div className="education-section">
       <h2 className="section-title">Education</h2>
       <div className="timeline">
+
         {educationData.map((item, index) => (
           <div className="education-card" key={index}>
             <span className="timeline-dot"></span>
@@ -60,11 +72,14 @@ const Education = () => {
                 <span className="education-percentage">
                   {item.percentage}
                 </span>
+                <p>{item._id}</p>
               </span>
+              <button onClick={() => handleDelete(item._id)} className="delete">delete</button>
             </div>
           </div>
         ))}
       </div>
+      
     </div>
   );
 };

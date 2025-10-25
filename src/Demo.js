@@ -25,6 +25,7 @@ function Demo() {
 
         <h3>DMK</h3>
       </div>
+      <h1>{` ${process.env.REACT_APP_BACKEND_URL}/api/profiles`}</h1>
     </div>
   );
 }
