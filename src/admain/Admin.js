@@ -37,10 +37,12 @@ export default function Admin() {
           <p>Update your technical skills.</p>
         </div>
 
-        <div className="admin-card">
-          <h3>Education</h3>
-          <p>Edit your academic background.</p>
-        </div>
+        <Link to="/admin/education">
+          <div className="admin-card">
+            <h3>Education</h3>
+            <p>Edit your academic background.</p>
+          </div>
+        </Link>
 
         <div className="admin-card">
           <h3>Contact Info</h3>

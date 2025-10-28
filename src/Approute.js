@@ -8,6 +8,7 @@ import Education from "./admain/Education";
 import Sample from "./admain/Sample";
 import Demo from "./Demo";
 import Login from "./pages/auth/Auth";
+import Certification from "./admain/Certfication";
 
 export default function Approute() {
   const loggedIn = localStorage.getItem("token");
@@ -27,6 +28,7 @@ export default function Approute() {
           <Route path="/admin/profile" element={<Profile />} />
           <Route path="/admin/about" element={<About />} />
           <Route path="/admin/education" element={<Education />} />
+          <Route path="admin/certification" element={<Certification />} />
         </>
       ) : (
         <Route path="/admin/*" element={<Navigate to="/login" replace />} />

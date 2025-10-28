@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import "../styls/Intern.css"; // ✅ Corrected typo in folder name
+import "../styls/Intern.css"; 
 
 const InternshipCard = ({ image, title, description, duration }) => {
   const [expanded, setExpanded] = useState(false);

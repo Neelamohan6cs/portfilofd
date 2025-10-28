@@ -8,6 +8,7 @@ import Internships from "./pages/Internships";
 
 import Contact from "./pages/Contact";
 import Footer from "./components/Footer";
+import ExtActivity from "./pages/ExtActivity";
 
 export default function MainLayout() {
   return (
@@ -17,9 +18,11 @@ export default function MainLayout() {
       </aside>
       <div className="content">
         <AboutSection />
+        <ExtActivity />
+        <Skills />
         <EducationSection />
         <Workshops />
-        <Skills />
+        
         <Internships />
         
         <Contact />

@@ -8,7 +8,6 @@ const WorkshopCard = ({ image, title, description }) => {
 
   useEffect(() => {
     if (descRef.current) {
-      // Check if description overflows 2 lines
       const lineHeight = parseInt(
         window.getComputedStyle(descRef.current).lineHeight
       );
@@ -27,7 +26,7 @@ const WorkshopCard = ({ image, title, description }) => {
       </div>
 
       {/* Title */}
-      <h3 className="mt-3">{title}</h3>
+      <h3 className="workshop-title">{title}</h3>
 
       {/* Description */}
       <p
@@ -37,10 +36,10 @@ const WorkshopCard = ({ image, title, description }) => {
         {description}
       </p>
 
-      {/* Read More / Read Less button */}
+      {/* Read More / Less */}
       {showReadMore && (
         <button
-          className="btn btn-primary btn-sm"
+          className="workshop-btn"
           onClick={() => setExpanded(!expanded)}
         >
           {expanded ? "Read Less" : "Read More"}
@@ -51,32 +50,37 @@ const WorkshopCard = ({ image, title, description }) => {
 };
 
 const Workshops = () => {
+  const workshopData = [
+    {
+      image: "/img/c1.png",
+      title: "AI & Machine Learning Workshop",
+      description:
+        "Learn the fundamentals of Artificial Intelligence and Machine Learning with hands-on coding examples. This workshop will cover supervised, unsupervised learning, and real-time case studies that prepare you for industry applications.",
+    },
+    {
+      image: "/img/c2.png",
+      title: "Web Development Bootcamp",
+      description:
+        "Build modern websites using HTML, CSS, JavaScript, and React. Designed for beginners and intermediates who want to start web development and create responsive projects with real-world examples.",
+    },
+    {
+      image: "/img/profile1.jpg",
+      title: "Cloud & DevOps Training",
+      description:
+        "Get hands-on with AWS and DevOps tools like Docker, Kubernetes, and CI/CD pipelines. Perfect for students and professionals aiming to strengthen their career opportunities in the IT industry.",
+    },
+  ];
+
   return (
-    <div className="container bg-white py-5">
-      <div className="row px-3">
-        <div className="col-lg-4 col-md-6 mb-4">
-          <WorkshopCard
-            image="/img/c1.png"
-            title="AI & Machine Learning Workshop"
-            description="Learn the fundamentals of Artificial Intelligence and Machine Learning with hands-on coding examples. This workshop will cover supervised, unsupervised learning and real-time case studies that prepare you for industry applications."
-          />
-        </div>
-        <div className="col-lg-4 col-md-6 mb-4">
-          <WorkshopCard
-            image="/img/c2.png"
-            title="Web Development Bootcamp"
-            description="Build modern websites using HTML, CSS, JavaScript, and React. This workshop is designed for beginners and intermediate learners who want to start web development and create responsive projects with real-world examples."
-          />
-        </div>
-        <div className="col-lg-4 col-md-6 mb-4">
-          <WorkshopCard
-            image="/img/profile1.jpg"
-            title="Cloud & DevOps Training"
-            description="Get hands-on with cloud platforms like AWS and DevOps tools such as Docker, Kubernetes, and CI/CD pipelines. Perfect for students and professionals looking to enhance their career opportunities in the IT industry."
-          />
-        </div>
+    <section className="workshop-section">
+      <h2 className="workshop-header">Workshops & Trainings</h2>
+
+      <div className="workshop-container">
+        {workshopData.map((workshop, index) => (
+          <WorkshopCard key={index} {...workshop} />
+        ))}
       </div>
-    </div>
+    </section>
   );
 };
 
